@@ -1,10 +1,12 @@
 import React from 'react'
+
+// Style
 import styles from './index.scss'
 
 // Components
 import Nav from './components/Nav'
 
-export default class App extends React.Component {
+export default class Layout extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -46,6 +48,7 @@ export default class App extends React.Component {
         <p>This React project just works including <span className={styles.blueBg}>module</span> local styles.</p>
         <p>Global bootstrap css import works too as you can see on the following button.</p>
         <p><a className="btn btn-primary btn-lg">Enjoy!</a></p>
+        { this.props.children }
       </div>
     )
   }

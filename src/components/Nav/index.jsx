@@ -1,4 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router'
+
+// Styles
 import styles from './nav.scss'
 
 // Components
@@ -57,6 +60,8 @@ export default class Nav extends React.Component {
           Site
         </div>
         <div className={ styles.links }>
+          <Link to='home'>Home</Link>
+          <Link to='test'>Test</Link>
           <a href='/#'>Link 1</a>
           <a href='/#'>Link 2</a>
           <a href='/#'>Link 3</a>

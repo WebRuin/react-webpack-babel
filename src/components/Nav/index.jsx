@@ -63,12 +63,15 @@ export default class Nav extends React.Component {
           <a href='/#'>Link 4</a>
         </div>
         <div className={ styles.buttons }>
-          <button>{ this.props.currentUser.name }</button>
+          <button>{ this.props.currentUser }</button>
           { login }
           { signup }
           { logout }
           <section className={ this.state.signupMenuClass }>
-            <UserSignupForm addUser={ this.props.addUser } handleSignUpClick={ this.handleSignUpClick.bind(this) } />
+            <UserSignupForm addUser={ this.props.addUser }
+              handleLogin={ this.handleLogin.bind(this) }
+              handleSignUpClick={ this.handleSignUpClick.bind(this) }
+            />
           </section>
         </div>
       </header>

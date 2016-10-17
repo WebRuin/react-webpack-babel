@@ -8,25 +8,23 @@ export default class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      currentUser: {
-        name: 'Tim Smith',
-        email: 'tim.smith.hdg@gmail.com',
-        password: '1234567890'
-      },
+      currentUser: 'Welcome',
       loggedIn: false,
-      users: [
-        {
-          name: 'Tim Smith',
-          email: 'tim.smith.hdg@gmail.com',
-          password: '1234567890'
-        }
-      ]
+      users: []
     }
   }
 
   addUser(user) {
     this.setState({
-      users: this.state.users.concat([user])
+      users: this.state.users.push(user)
+    })
+    this.setCurrentUser()
+  }
+
+  setCurrentUser() {
+    const thisUser = this.state.users.length
+    this.setState({
+      currentUser: this.state.users[thisUser - 1].name
     })
   }
 

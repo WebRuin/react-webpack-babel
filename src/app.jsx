@@ -19,6 +19,13 @@ export default class App extends React.Component {
       users: this.state.users.push(user)
     })
     this.setCurrentUser()
+    this.loggMeIn()
+  }
+
+  loggMeIn() {
+    this.setState({
+      loggedIn: !this.state.loggedIn
+    })
   }
 
   setCurrentUser() {
@@ -29,10 +36,13 @@ export default class App extends React.Component {
   }
 
   render() {
+    const user = this.state.loggedIn ? this.state.currentUser : ''
+    const userSplit = user.split(' ')
+
     return (
       <div>
         <Nav currentUser={ this.state.currentUser } addUser={ this.addUser.bind(this) } />
-        <h1>It Works!</h1>
+        <h1>Welcome, { userSplit[0] }</h1>
         <p>This React project just works including <span className={styles.blueBg}>module</span> local styles.</p>
         <p>Global bootstrap css import works too as you can see on the following button.</p>
         <p><a className="btn btn-primary btn-lg">Enjoy!</a></p>

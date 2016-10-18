@@ -1,6 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+// Actions
+import * as NavActions from '../../Actions/NavActions'
+
+// Store
+import NavStore from '../../Stores/NavStore'
+
 // Styles
 import styles from './nav.scss'
 
@@ -11,48 +17,34 @@ export default class Nav extends React.Component {
   constructor() {
     super()
     this.state = {
-      loggedIn: false,
-      signupMenuOpen: false,
-      signupMenuClass: styles.signupMenu_Close
+      state: NavStore.getState()
     }
+  }
+
+  componentWillMount() {
+    NavStore.on('change', () => {
+      this.setState({
+        state: NavStore.getState()
+      })
+    })
   }
 
   handleLogin() {
-    this.setState({
-      loggedIn: !this.state.loggedIn
-    })
+    NavActions.toogleLogin()
   }
 
   handleLogout() {
-    this.setState({
-      loggedIn: !this.state.loggedIn
-    })
+    NavActions.toogleLogout()
   }
 
-  handleAddUser(user) {
-    this.prop.addUser(user)
-  }
-
-  handleSignUpClick() {
-    event.defaultPrevented
-
-    if ( this.state.signupMenuOpen ) {
-      this.setState({
-        signupMenuOpen: !this.state.signupMenuOpen,
-        signupMenuClass: styles.signupMenu_Close
-      })
-    } else {
-      this.setState({
-        signupMenuOpen: !this.state.signupMenuOpen,
-        signupMenuClass: styles.signupMenu_Open
-      })
-    }
+  handleSignpClick() {
+    NavActions.toggleSignupMenu()
   }
 
   render() {
-    let login = this.state.loggedIn ? '' : <button onClick={ this.handleLogin.bind(this) }>Login</button>
-    let signup = this.state.loggedIn ? '' : <button onClick={ this.handleSignUpClick.bind(this) }>Sign Up</button>
-    let logout = this.state.loggedIn ? <button onClick={ this.handleLogout.bind(this) }>Logout</button>: ''
+    let login = this.state.state.loggedIn ? '' : <button onClick={ this.handleLogin.bind(this) }>Login</button>
+    let signup = this.state.state.loggedIn ? '' : <button onClick={ this.handleSignpClick.bind(this) }>Sign Up</button>
+    let logout = this.state.state.loggedIn ? <button onClick={ this.handleLogout.bind(this) }>Logout</button>: ''
 
     return (
       <header className={ styles.header }>
@@ -62,20 +54,16 @@ export default class Nav extends React.Component {
         <div className={ styles.links }>
           <Link to='home'>Home</Link>
           <Link to='test'>Test</Link>
-          <a href='/#'>Link 1</a>
-          <a href='/#'>Link 2</a>
-          <a href='/#'>Link 3</a>
-          <a href='/#'>Link 4</a>
         </div>
         <div className={ styles.buttons }>
-          <button>{ this.props.currentUser }</button>
+          <button>{ this.state.state.currentUser }</button>
           { login }
           { signup }
           { logout }
-          <section className={ this.state.signupMenuClass }>
-            <UserSignupForm addUser={ this.props.addUser }
+          <section className={ this.state.state.signupMenuClass }>
+            <UserSignupForm
               handleLogin={ this.handleLogin.bind(this) }
-              handleSignUpClick={ this.handleSignUpClick.bind(this) }
+              handleSignUpClick={ this.handleSignpClick.bind(this) }
             />
           </section>
         </div>

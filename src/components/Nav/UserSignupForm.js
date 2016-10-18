@@ -1,6 +1,12 @@
 import React from 'react'
 import styles from './userSignupForm.scss'
 
+// Actions
+import * as NavActions from '../../Actions/NavActions'
+
+// Store
+import NavStore from '../../Stores/NavStore'
+
 export default class UserSignupForm extends React.Component {
   handleFormSubmit() {
     let user = {
@@ -8,9 +14,9 @@ export default class UserSignupForm extends React.Component {
       email: this.refs.email.value,
       password: this.refs.password.value
     }
-    this.props.addUser(user)
-    this.props.handleSignUpClick()
-    this.props.handleLogin()
+    NavActions.addUser(user)
+    NavActions.toggleSignupMenu()
+    NavActions.toogleLogin()
     this.refs.userSignupForm.reset()
   }
 

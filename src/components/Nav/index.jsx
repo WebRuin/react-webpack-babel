@@ -50,9 +50,6 @@ export default class Nav extends React.Component {
     return (
       <section className={ styles.header_wrap } >
         <header className={ styles.header }>
-          <div className={ styles.logo }>
-            Site
-          </div>
           <div className={ styles.links }>
             <Link to='home'>Home</Link>
             <Link to='test'>Test</Link>
@@ -70,6 +67,12 @@ export default class Nav extends React.Component {
             </section>
           </div>
         </header>
+
+        <h1>Rise Up</h1>
+        <h3>
+          Mustache austin roof party put a bird on it direct trade. Leggings echo park sartorial butcher. Narwhal deep v neutra disrupt banjo. Try-hard cronut knausgaard viral, cold-pressed photo booth bushwick raw denim. Quinoa taxidermy swag twee wayfarers, PBR&B typewriter farm-to-table mixtape ethical keffiyeh occupy. IPhone bushwick tacos, direct trade kitsch locavore beard listicle YOLO trust fund crucifix brunch.
+        </h3>
+
         <SubNav />
       </section>
     )

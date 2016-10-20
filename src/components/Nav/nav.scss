@@ -3,26 +3,33 @@
   background-image: url('./img/hero1.jpg');
   background-size: cover;
   width: 100vw;
-  height: 100vh;
-}
+  height: 80vh;
+
+  h1 {
+    text-align: center;
+    margin: 5.5rem 0 2rem 0;
+    font-size: 2.5rem;
+    color: yellow;
+    font-weight: bold;
+  }
+
+  h3 {
+    display: block;
+    width: 60vw;
+    text-align: center;
+    color: #fff;
+    margin: auto;
+    padding: 1rem;
+    background-color: rgba(0,0,0,0.5)
+  }
+
 
 .header {
   display: flex;
   flex-wrap: wrap;
   background-color: rgba(154,154,216,0.5);
 
-  .logo {
-    padding: 13px;
-    color: #fff;
-    font-size: 1.5rem;
-
-    .h1 {
-      font-size: 1.2rem;
-    }
-  }
-
   .links {
-    margin-left: auto;
     display: flex;
 
     a {
@@ -44,6 +51,7 @@
   }
 
   .buttons{
+    margin-left: auto;
     position: relative;
 
     button {

@@ -12,7 +12,8 @@ class NavStore extends EventEmitter {
       loggedIn: false,
       signupMenuOpen: false,
       signupMenuClass: styles.signupMenu_Close,
-      users: []
+      users: [],
+      sub_content: 'homeless'
     }
   }
 
@@ -27,6 +28,10 @@ class NavStore extends EventEmitter {
 
   getState() {
     return this.state
+  }
+
+  getCurrentUser() {
+    return this.state.currentUser
   }
 
   handleLogin() {
@@ -47,13 +52,18 @@ class NavStore extends EventEmitter {
       this.state.signupMenuOpen = !this.state.signupMenuOpen,
       this.state.signupMenuClass = styles.signupMenu_Open
     }
-    console.log(this.state.signupMenuOpen)
+    console.log(this.state.sub_content)
     this.emit('change')
   }
 
   setCurrentUser() {
     const thisUser = this.state.users.length
     this.state.currentUser = this.state.users[thisUser - 1].name
+  }
+
+  setSubContent( sub ) {
+    this.state.sub_content = sub
+    this.emit('change')
   }
 
   handleAction(action) {
@@ -72,6 +82,10 @@ class NavStore extends EventEmitter {
       }
       case 'ADD_USER': {
         this.handleAddUser(action.payload)
+        break
+      }
+      case 'CHANGE_SUB_CONTENT': {
+        this.setSubContent(action.payload)
         break
       }
     }

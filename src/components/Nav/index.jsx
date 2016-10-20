@@ -12,6 +12,7 @@ import styles from './nav.scss'
 
 // Components
 import UserSignupForm from './UserSignupForm'
+import SubNav from './SubNav'
 
 export default class Nav extends React.Component {
   constructor() {
@@ -47,27 +48,30 @@ export default class Nav extends React.Component {
     let logout = this.state.state.loggedIn ? <button onClick={ this.handleLogout.bind(this) }>Logout</button>: ''
 
     return (
-      <header className={ styles.header }>
-        <div className={ styles.logo }>
-          Site
-        </div>
-        <div className={ styles.links }>
-          <Link to='home'>Home</Link>
-          <Link to='test'>Test</Link>
-        </div>
-        <div className={ styles.buttons }>
-          <button>{ this.state.state.currentUser }</button>
-          { login }
-          { signup }
-          { logout }
-          <section className={ this.state.state.signupMenuClass }>
-            <UserSignupForm
-              handleLogin={ this.handleLogin.bind(this) }
-              handleSignUpClick={ this.handleSignpClick.bind(this) }
-            />
-          </section>
-        </div>
-      </header>
+      <section className={ styles.header_wrap } >
+        <header className={ styles.header }>
+          <div className={ styles.logo }>
+            Site
+          </div>
+          <div className={ styles.links }>
+            <Link to='home'>Home</Link>
+            <Link to='test'>Test</Link>
+          </div>
+          <div className={ styles.buttons }>
+            <button>{ this.state.state.currentUser }</button>
+            { login }
+            { signup }
+            { logout }
+            <section className={ this.state.state.signupMenuClass }>
+              <UserSignupForm
+                handleLogin={ this.handleLogin.bind(this) }
+                handleSignUpClick={ this.handleSignpClick.bind(this) }
+              />
+            </section>
+          </div>
+        </header>
+        <SubNav />
+      </section>
     )
   }
 }

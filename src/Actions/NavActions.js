@@ -24,3 +24,10 @@ export function addUser(payload) {
     payload
   })
 }
+
+export function setSubContent(payload) {
+  dispatcher.dispatch({
+    type: 'CHANGE_SUB_CONTENT',
+    payload
+  })
+}
